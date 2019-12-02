@@ -1,0 +1,39 @@
+docker run -it -v /external-resources:/app
+
+
+
+docker run -it -d -p 8999:5555 --mount source=restaurant,target=/app restaurant-service
+
+docker run -it -v /media/sf_buy/order-service/implementation/external-resources:/app -d test-order-image
+
+
+
+#working
+docker build -f Dockerfile -t restaurant-service .
+docker run -it -p 8999:5555 -v /media/sf_RestaurantSimulator-master/logs:/logs -d restaurant-service
+
+docker run -it -p 8999:5050 -v D:\Work\docker\logs:/logs --name restaurant-ser --link mysql-standalone:mysql -d restaurant-service
+
+
+docker run -it --mount source=restaurant,target=/logs -p 9999:5050 -d restaurant-sim
+
+%EpIzEv@GrUtEMqUN@JUwYqUpzUm
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'muthu';
+CREATE USER 'muthu'@'localhost' IDENTIFIED BY 'muthu';
+
+@G@LKuv2@P*IttezYfK@J)eLLeP
+
+
+docker run -p 9999:3306 --name sqlser -itd -v mysqlvolume:/var/lib/mysql mysql/mysql-server
+
+docker run --name sqlser -e MYSQL_ROOT_PASSWORD=muthu -e MYSQL_USER=muthu -e MYSQL_PASSWORD=muthu -d mysql/mysql-server
+
+
+docker run --name mysql-standalone -p 3306:3306 -v mysqlvolume:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=muthu -e MYSQL_DATABASE=restaurant_simulator -e MYSQL_USER=muthu -e MYSQL_PASSWORD=muthu -d mysql:latest
+
+
+spring.config.location='D:\Work\Restaurant simulator final release\RestaurantSimulator-master\RestaurantSimulator-master\src\main\external-res\localapplication.properties'
+
+
+
