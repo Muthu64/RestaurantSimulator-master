@@ -35,5 +35,44 @@ docker run --name mysql-standalone -p 3306:3306 -v mysqlvolume:/var/lib/mysql -e
 
 spring.config.location='D:\Work\Restaurant simulator final release\RestaurantSimulator-master\RestaurantSimulator-master\src\main\external-res\localapplication.properties'
 
+docker run -it -p 28000:27017 --name mongoContainer mongo:latest
+
+
+Elastic search docker:
+=======================
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+docker pull docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Kibana docker:
+==============
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+docker pull docker.elastic.co/kibana/kibana:7.10.2
+docker run --link YOUR_ELASTICSEARCH_CONTAINER_NAME_OR_ID:elasticsearch -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.2
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+logstash docker:
+================
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+docker build -f Dockerfile -t logstash-docker . 
+
+
+#To load a single file
+docker run -v C:\Users\paramasivamm\buy\order-service\logs\application-info-ParamasivamM1.log:/media/application-info-ParamasivamM1.log -h logstash --name logstash --link YOUR_ELASTICSEARCH_CONTAINER_NAME_OR_ID:elasticsearch -it logstash-docker
+
+
+#To load an entire directory
+docker run -v C:\logs\:/media/ -h logstash --name logstash --link YOUR_ELASTICSEARCH_CONTAINER_NAME_OR_ID:elasticsearch -it logstash-docker
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 
